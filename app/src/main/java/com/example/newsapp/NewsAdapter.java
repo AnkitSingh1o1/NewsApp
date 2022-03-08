@@ -1,5 +1,6 @@
 package com.example.newsapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +16,21 @@ import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
-    public NewsAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
+    public NewsAdapter(Context context, List<News> resource) {
+        super(context, 0, resource);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listItemView = convertView;
+        LayoutInflater inflater = (LayoutInflater)  getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+        if(convertView == null){
+            convertView = inflater.inflate(R.layout.list_item, null);
         }
 
         News currNews = getItem(position);
@@ -40,16 +43,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
             e.printStackTrace();
         }
 
-        TextView heading = (TextView) listItemView.findViewById(R.id.heading);
+        TextView heading = (TextView) convertView.findViewById(R.id.heading);
         heading.setText(currNews.getHeading());
 
-        TextView time = (TextView) listItemView.findViewById(R.id.time);
+        TextView time = (TextView) convertView.findViewById(R.id.time);
         heading.setText(currNews.getTime());
 
-        TextView source = (TextView) listItemView.findViewById(R.id.source);
+        TextView source = (TextView) convertView.findViewById(R.id.source);
         heading.setText(currNews.getSource());
 
-        return listItemView;
+        return convertView;
 
     }
 }
