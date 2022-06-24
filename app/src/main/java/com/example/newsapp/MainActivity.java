@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements androidx,fr {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

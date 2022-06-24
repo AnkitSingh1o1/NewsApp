@@ -123,5 +123,4 @@ public class NewsListFragment extends Fragment implements LoaderCallbacks<List<N
         booksList.setAdapter(adapter);
     }
 
-    }
 }
